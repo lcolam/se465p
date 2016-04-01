@@ -77,14 +77,7 @@ void printErrors(const int& suppThres, const float& confThres) {
     }
 }
 
-int main(int argc, char *argv[]) {
-    string bcFile;
-    if (argc >= 2) {
-        bcFile = argv[1];
-    }
-    int suppThres = argc >= 3 ? atoi(argv[2]) : T_SUPPORT;
-    float confThres = argc >= 4 ? atoi(argv[3]) / 100.00000 : T_CONFIDENCE;
-
+void readFromCallGraph() {
     string input;
     bool inScope = false;
     string scope;
@@ -114,6 +107,17 @@ int main(int argc, char *argv[]) {
     if (inScope) {
         processFunctionsFromScope(scope, functionsCalled);
     }
+}
+
+int main(int argc, char *argv[]) {
+    string bcFile;
+    if (argc >= 2) {
+        bcFile = argv[1];
+    }
+    int suppThres = argc >= 3 ? atoi(argv[2]) : T_SUPPORT;
+    float confThres = argc >= 4 ? atoi(argv[3]) / 100.00000 : T_CONFIDENCE;
+
+    readFromCallGraph();        
     printErrors(suppThres, confThres);
 
     return 0;
