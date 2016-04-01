@@ -73,14 +73,6 @@ void printErrors(const int& suppThres, const float& confThres) {
                     cout << "support: " << suppIt->second << ", confidence: " << setprecision(2) << fixed << conf * 100 << "\%" << endl;
                 }
             }
-            // allScopes = scopes[funcPair.second];
-            // for (set<string>::iterator it1 = allScopes.begin(); it1 != allScopes.end(); ++it1) {
-            //     set<string>::iterator it2 = scopesWith.find(*it1);
-            //     if (it2 == scopesWith.end()) {
-            //         cout << "bug: " << funcPair.second << " in " << *it1 << ", pair: (" << funcPair.first << ", " << funcPair.second << "), ";
-            //         cout << "support: " << suppIt->second << ", confidence: " << setprecision(2) << fixed << conf * 100 << "\%" << endl;
-            //     }
-            // }
         }
     }
 }
