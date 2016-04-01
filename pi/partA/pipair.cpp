@@ -35,7 +35,7 @@ void processFunctionsFromScope(const string& scope, const set<string>& functions
         }
         scopes[*it1].insert(scope);
 
-        for (set<string>::const_iterator it2 = it1; it2 != functions.end(); ++it2) {
+        for (set<string>::const_iterator it2 = functions.begin(); it2 != functions.end(); ++it2) {
             if (*it1 != *it2) {
                 pair<string, string> funcPair(*it1, *it2);
                 map<pair<string, string>, int>::iterator supportPairIndex = supportPair.find(funcPair);
@@ -64,8 +64,12 @@ void printErrors(const int& suppThres, const float& confThres) {
             set<string> allScopes = scopes[funcPair.first];
             for (set<string>::iterator it1 = allScopes.begin(); it1 != allScopes.end(); ++it1) {
                 set<string>::iterator it2 = scopesWith.find(*it1);
+
                 if (it2 == scopesWith.end()) {
-                    cout << "bug: " << funcPair.first << " in " << *it1 << ", pair: (" << funcPair.first << ", " << funcPair.second << "), ";
+                    string first = funcPair.first > funcPair.second ? funcPair.second : funcPair.first;
+                    string second = funcPair.first < funcPair.second ? funcPair.second : funcPair.first;
+
+                    cout << "bug: " << funcPair.first << " in " << *it1 << ", pair: (" << first << ", " << second << "), ";
                     cout << "support: " << suppIt->second << ", confidence: " << setprecision(2) << fixed << conf * 100 << "\%" << endl;
                 }
             }
@@ -73,8 +77,8 @@ void printErrors(const int& suppThres, const float& confThres) {
             // for (set<string>::iterator it1 = allScopes.begin(); it1 != allScopes.end(); ++it1) {
             //     set<string>::iterator it2 = scopesWith.find(*it1);
             //     if (it2 == scopesWith.end()) {
-            //         cout << "bug: " << funcPair.first << " in " << *it1 << ", pair: (" << funcPair.first << ", " << funcPair.second << "), ";
-            //         cout << "support: " << suppIt->second << ", confidence: " << floor(conf * 10000) / 100 << "\%" << endl;
+            //         cout << "bug: " << funcPair.second << " in " << *it1 << ", pair: (" << funcPair.first << ", " << funcPair.second << "), ";
+            //         cout << "support: " << suppIt->second << ", confidence: " << setprecision(2) << fixed << conf * 100 << "\%" << endl;
             //     }
             // }
         }
