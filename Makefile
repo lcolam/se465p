@@ -1,4 +1,4 @@
-OUTPUT_NAME = pipair
+OUTPUT_NAME = pipairC
 
 SRC_DIR = ./pi/partA
 INCLUDES = -I${SRC_DIR}

@@ -23,6 +23,12 @@ int main(int argc, char *argv[]) {
     map<string, vector<string> > scopes;
     map<pair<string,string>, vector<string> > scopesPair;
 
+    string input;
+    while (getline(cin, input)) {
+        cout << input << endl;
+    }
+
+    cout << "END PROGRAM" << bcFile << "_" << suppThres << "_" << confThres << endl;
     return 0;
 }
 
