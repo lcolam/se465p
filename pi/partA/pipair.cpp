@@ -59,7 +59,7 @@ void printErrors(const int& suppThres, const float& confThres) {
         pair<string, string> funcPair = suppIt->first;
         int supp = support[funcPair.first];
         float conf = suppIt->second * 1.00000 / supp;
-        if (supp > suppThres && conf > confThres) {
+        if (supp > suppThres && conf >= confThres) {
             set<string> scopesWith = scopesPair[funcPair];
             set<string> allScopes = scopes[funcPair.first];
             for (set<string>::iterator it1 = allScopes.begin(); it1 != allScopes.end(); ++it1) {
@@ -83,7 +83,7 @@ int main(int argc, char *argv[]) {
         bcFile = argv[1];
     }
     int suppThres = argc >= 3 ? atoi(argv[2]) : T_SUPPORT;
-    float confThres = argc >= 4 ? atof(argv[3]) : T_CONFIDENCE;
+    float confThres = argc >= 4 ? atoi(argv[3]) / 100.00000 : T_CONFIDENCE;
 
     string input;
     bool inScope = false;
